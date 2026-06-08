@@ -5,6 +5,7 @@ from PIL import Image
 from ultralytics import YOLO
 import torch
 import os
+import requests
 import folium
 from streamlit_folium import st_folium
 
@@ -96,44 +97,78 @@ st.markdown("---")
 # ==========================================
 # 2. CARREGAMENTO DO MODELO (BACKEND)
 # ==========================================
+
+MODEL_URL = "https://github.com/Luiz-Frederico/guardiao-ancestral-ai/releases/download/v1.0/best.pt"
+
 @st.cache_resource
 def load_yolo_model():
-    colab_drive_path = '/content/drive/MyDrive/guardiao_ancestral/best.pt'
-    cloud_local_path = 'best.pt'
-    
-    if os.path.exists(colab_drive_path):
-        model_path = colab_drive_path
-    elif os.path.exists(cloud_local_path) and os.path.getsize(cloud_local_path) > 40000000:
-        # Garante que o arquivo tem mais de 40MB (o teu tem 54.8MB), provando que é o modelo real
-        model_path = cloud_local_path
-    else:
-        model_path = cloud_local_path
-        with st.spinner("Instalando infraestrutura analítica (baixando pesos da IA sem restrições)..."):
-            import urllib.request
-            
-            file_id = "1_7kNmlP5-Jp_8gOLV5KwurMoBjmY7cjB"
-            # Link com parâmetro de confirmação forçada para pular o aviso de arquivos grandes do Drive
-            url_direta = f"https://docs.google.com/uc?export=download&id={file_id}&confirm=t"
-            
-            try:
-                if os.path.exists(cloud_local_path):
-                    os.remove(cloud_local_path)
-                    
-                req = urllib.request.Request(url_direta, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req) as response, open(model_path, 'wb') as out_file:
-                    out_file.write(response.read())
-                    
-            except Exception as e:
-                st.error(f"Erro na automação de download: {e}")
-                return None
-                
+
+    model_path = "best.pt"
+
     try:
+
+        # Se o modelo ainda não existir localmente
+        if not os.path.exists(model_path):
+
+            st.write("Iniciando download do modelo...")
+
+            with st.spinner("📥 Baixando modelo YOLOv8..."):
+
+                response = requests.get(
+                    MODEL_URL,
+                    stream=True,
+                    timeout=300
+                )
+
+                if response.status_code != 200:
+                    st.error(
+                        f"Falha ao baixar o modelo. HTTP {response.status_code}"
+                    )
+                    return None
+
+                content_type = response.headers.get("Content-Type", "")
+
+                if "text/html" in content_type:
+                    st.error(
+                        f"O servidor retornou HTML em vez do modelo. Content-Type: {content_type}"
+                    )
+                    return None
+
+                with open(model_path, "wb") as f:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        if chunk:
+                            f.write(chunk)
+
+        # Validação do arquivo baixado
+        tamanho_mb = os.path.getsize(model_path) / (1024 * 1024)
+
+        st.write(f"Tamanho do arquivo baixado: {tamanho_mb:.2f} MB")
+
+        if tamanho_mb < 40:
+
+            st.error(
+                f"Arquivo inválido. Tamanho encontrado: {tamanho_mb:.2f} MB"
+            )
+
+            try:
+                os.remove(model_path)
+            except:
+                pass
+
+            return None
+
+        st.info(f"Modelo carregado: {tamanho_mb:.2f} MB")
+
         model = YOLO(model_path)
+
         return model
+
     except Exception as e:
-        st.error(f"Erro crítico ao carregar o arquivo de pesos best.pt: {e}")
-        if os.path.exists(cloud_local_path):
-            os.remove(cloud_local_path)
+
+        st.error(
+            f"Erro crítico ao carregar o arquivo de pesos best.pt: {e}"
+        )
+
         return None
 
 model = load_yolo_model()
