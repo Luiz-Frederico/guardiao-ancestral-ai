@@ -98,46 +98,33 @@ st.markdown("---")
 # ==========================================
 @st.cache_resource
 def load_yolo_model():
-    # 1º Caminho prioritário: Google Drive (Para quando você rodar no Colab)
     colab_drive_path = '/content/drive/MyDrive/guardiao_ancestral/best.pt'
-    # 2º Caminho secundário: Pasta local da nuvem (Para quando rodar no Streamlit Cloud)
     cloud_local_path = 'best.pt'
     
-    # Se estiver no Colab e o arquivo existir no Drive, usa ele direto sem baixar nada!
     if os.path.exists(colab_drive_path):
         model_path = colab_drive_path
-    # Se não estiver no Colab, verifica se já existe o arquivo baixado localmente
-    elif os.path.exists(cloud_local_path):
+    elif os.path.exists(cloud_local_path) and os.path.getsize(cloud_local_path) > 40000000:
+        # Garante que o arquivo tem mais de 40MB (o teu tem 54.8MB), provando que é o modelo real
         model_path = cloud_local_path
-    # Se não achar em nenhum lugar (Cenário do primeiro boot no Streamlit Cloud), faz o download automatizado
     else:
         model_path = cloud_local_path
-        with st.spinner("Instalando infraestrutura analítica (baixando artefatos de IA da nuvem)..."):
+        with st.spinner("Instalando infraestrutura analítica (baixando pesos da IA sem restrições)..."):
             import urllib.request
-            import re
             
             file_id = "1_7kNmlP5-Jp_8gOLV5KwurMoBjmY7cjB"
-            URL_BASE = "https://docs.google.com/uc?export=download"
-            url_confirmacao = f"{URL_BASE}&id={file_id}"
+            # Link com parâmetro de confirmação forçada para pular o aviso de arquivos grandes do Drive
+            url_direta = f"https://docs.google.com/uc?export=download&id={file_id}&confirm=t"
             
             try:
-                req = urllib.request.Request(url_confirmacao, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req) as response:
-                    html = response.read().decode('utf-8', errors='ignore')
-                
-                match = re.search(r'confirm=([0-9A-Za-z_]+)', html)
-                if match:
-                    token = match.group(1)
-                    url_final = f"{URL_BASE}&id={file_id}&confirm={token}"
-                else:
-                    url_final = url_confirmacao
-                
-                req_final = urllib.request.Request(url_final, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req_final) as response, open(model_path, 'wb') as out_file:
+                if os.path.exists(cloud_local_path):
+                    os.remove(cloud_local_path)
+                    
+                req = urllib.request.Request(url_direta, headers={'User-Agent': 'Mozilla/5.0'})
+                with urllib.request.urlopen(req) as response, open(model_path, 'wb') as out_file:
                     out_file.write(response.read())
                     
             except Exception as e:
-                st.error(f"Erro na automação de download via API: {e}")
+                st.error(f"Erro na automação de download: {e}")
                 return None
                 
     try:
@@ -145,8 +132,7 @@ def load_yolo_model():
         return model
     except Exception as e:
         st.error(f"Erro crítico ao carregar o arquivo de pesos best.pt: {e}")
-        # Limpa o arquivo se estiver corrompido na raiz local para evitar travar o próximo loop
-        if model_path == cloud_local_path and os.path.exists(cloud_local_path):
+        if os.path.exists(cloud_local_path):
             os.remove(cloud_local_path)
         return None
 
@@ -292,7 +278,7 @@ with tab1:
 # ------------------------------------------
 with tab2:
     st.markdown("### 🗺️ Georreferenciamento de Alertas e Territórios Críticos")
-    st.markdown("Simulação em tempo real do pipeline serverless consolidando os dados geográficos e alimentando as defesas locais.<br><br>Em uma operação real de grande escala, essa aba deixaria de ler dados estáticos do código e passaria a consuming uma API espacial conectada ao banco de dados em nuvem (como o MongoDB ou PostgreSQL com extensão PostGIS, alimentados pelo pipeline da AWS).", unsafe_allow_html=True)
+    st.markdown("Simulação em tempo real do pipeline serverless consolidando os dados geográficos e alimentando as defesas locais.<br><br>Em uma operação real de grande escala, essa aba deixaria de ler dados estáticos do código e passaria a consumir uma API espacial conectada ao banco de dados em nuvem (como o MongoDB ou PostgreSQL com extensão PostGIS, alimentados pelo pipeline da AWS).", unsafe_allow_html=True)
     
     centro_lat, centro_lon = -3.20, -52.20
     m = folium.Map(location=[centro_lat, centro_lon], zoom_start=6, tiles="OpenStreetMap")
