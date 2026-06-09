@@ -313,7 +313,7 @@ with tab1:
 # ------------------------------------------
 with tab2:
     st.markdown("### 🗺️ Georreferenciamento de Alertas e Territórios Críticos")
-    st.markdown("Simulação em tempo real do pipeline serverless consolidando os dados geográficos e alimentando as defesas locais.<br><br>Em uma operação real de grande escala, essa aba deixaria de ler dados estáticos do código e passaria a consumir uma API espacial conectada ao banco de dados em nuvem (como o MongoDB ou PostgreSQL com extensão PostGIS, alimentados pelo pipeline da AWS).", unsafe_allow_html=True)
+    st.markdown("Simulação em tempo real do pipeline serverless consolidando os dados geográficos e alimentando as defesas locais.<br><br>Em uma operação real de grande escala, essa aba deixaria de ler dados estáticos do código e passaria a consumir uma API espacial conectada ao banco de dados em nuvem (como o Amazon DynamoDB, alimentado pelo pipeline da AWS).", unsafe_allow_html=True)
     
     centro_lat, centro_lon = -3.20, -52.20
     m = folium.Map(location=[centro_lat, centro_lon], zoom_start=6, tiles="OpenStreetMap")
