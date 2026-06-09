@@ -90,7 +90,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<p class="main-title" style="font-size: 64px; letter-spacing: -1px; margin-top: -20px; line-height: 1.1;">🏹🌳 Guardião Ancestral IA (G.A.I.A)</p>', unsafe_allow_html=True)
+st.markdown('<p class="main-title" style="font-size: 64px; letter-spacing: -1px; margin-top: -20px; line-height: 1.1;">🏹🌳 GAIA - Guardião Ancestral IA </p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Plataforma de Monitoramento Orbital Inteligente contra o Desmatamento e Proteção de Territórios Indígenas.</p>', unsafe_allow_html=True)
 st.markdown("---")
 
