@@ -1,80 +1,124 @@
 # FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
-<a href="https://www.fiap.com.br/">
-  <img src="../../../assets/logo-fiap.png" 
-       alt="FIAP - Faculdade de Informática e Administração Paulista" 
-       width="40%">
-</a>
+  <a href="https://www.fiap.com.br/">
+    <img src="https://github.com/Luiz-Frederico/templateFiap/blob/main/assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width="40%" height="40%">
+  </a>
 </p>
 
 <br>
 
-# Nome do projeto/atividade
+---
+
+# 🌍 GAIA — Guardião Ancestral IA
+
 
 ## Nome do grupo
 
-## 👨‍🎓 Integrantes: 
-- <a href="https://www.linkedin.com/in/sabrina-otoni-22525519b/">Nome do integrante 1</a>
-- <a href="https://www.linkedin.com/in/sabrina-otoni-22525519b/">Nome do integrante 2</a>
-- <a href="https://www.linkedin.com/in/sabrina-otoni-22525519b/">Nome do integrante 3</a> 
-- <a href="https://www.linkedin.com/in/sabrina-otoni-22525519b/">Nome do integrante 4</a> 
-- <a href="https://www.linkedin.com/in/sabrina-otoni-22525519b/">Nome do integrante 5</a>
+## Integrantes: 
+<p align="left">
+  <a href="https://github.com/Luiz-Frederico" target="_blank">
+    <img src="https://github.com/Luiz-Frederico.png" width="64" height="64" alt="@Luiz-Frederico" />
+  </a>
+  </a>
+  <a href="https://github.com/henriquehsilva" target="_blank">
+    <img src="https://github.com/henriquehsilva.png" width="64" height="64" alt="@henriquehsilva" />
+  </a>
+  <a href="https://github.com/manoellaweiser-gif" target="_blank">
+    <img src="https://github.com/manoellaweiser-gif.png" width="64" height="64" alt="@manoellaweiser-gif" />
+  </a>
+  <a href="https://github.com/JoaoMDPaiva" target="_blank">
+    <img src="https://github.com/JoaoMDPaiva.png" width="64" height="64" alt="@JoaoMDPaiva" />
+  </a>
+  <a href="https://github.com/younmariana-create" target="_blank">
+    <img src="https://github.com/younmariana-create.png" width="64" height="64" alt="@younmariana-create" />
+  </a>
+</p>
 
-## 👩‍🏫 Professores:
-### Tutor(a) 
-- <a href="https://www.linkedin.com/in/sabrina-otoni-22525519b/">Nome do Tutor</a>
-### Coordenador(a)
-- <a href="https://www.linkedin.com/in/andregodoichiovato/">Nome do Coordenador</a>
-
+## Professores:
+### Coordenador(a) / Tutor(a) 
+<p align="left">
+  <a href="https://github.com/agodoi" target="_blank">
+    <img src="https://github.com/agodoi.png" width="64" height="64" alt="@agodoi" />
+  </a>
+  <a href="https://github.com/SabrinaOtoni" target="_blank">
+    <img src="https://github.com/SabrinaOtoni.png" width="64" height="64" alt="@SabrinaOtoni" />
+    </a>
+  </p>
 
 ## 📜 Descrição
 
-*Descreva seu projeto com base no texto da Global Solution (até 600 palavras)*
+GAIA — Guardião Ancestral IA
+
+O projeto **GAIA (Guardião Ancestral IA)** é uma solução de Visão Computacional baseada em Inteligência Artificial desenvolvida para combater o desmatamento ilegal e monitorar a degradação ambiental em biomas nativos protegidos. Utilizando o estado da arte em segmentação de instâncias com o algoritmo **YOLOv8-seg**, a solução analisa imagens de satélite de alta resolução para identificar, delimitar e classificar padrões de cobertura do solo em tempo real. O modelo foi treinado para diferenciar áreas de floresta densa preservada (Mata Virgem) de cicatrizes de intervenção humana, tais como clareiras de desmatamento recente, queimadas ativas e áreas degradadas por atividades agropecuárias ou mineração ilegal.
+
+A arquitetura do sistema foi projetada para lidar com os desafios complexos de imagens multiespectrais e sensoriamento remoto, convertendo anotações geométricas complexas em masks de pixels precisas. Com essa abordagem, o GAIA automatiza a fiscalização territorial, permitindo que órgãos ambientais, ONGs e comunidades tradicionais detectem infrações e alertem autoridades competentes de maneira ágil, mitigando a destruição de ecossistemas críticos antes que os danos se tornem irreversíveis.
+
+---
 
 
 ## 📁 Estrutura de pastas
 
-Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+Dentre os arquivos e pastas presentes na raiz deste diretório, definem-se:
 
-- <b>docs</b>: Pasta destinada à documentação textual, incluindo brainstorm, atas e registros de reuniões, desenhos, prints, diagramas, storyboard, estratégia de IA e arquitetura e etc.
+* **`docs/`**: Pasta destinada à documentação textual do projeto. Contém os relatórios, o diagrama visual da arquitetura de nuvem Serverless AWS e os Jupyter Notebooks (`.ipynb`) utilizados para a exploração de dados, engenharia de recursos e o treinamento do modelo de segmentação.
+* **`src/`**: Todo o código-fonte de produção desenvolvido para a solução. Inclui o script principal da interface (`app.py`), o arquivo de gerenciamento de dependências (`requirements.txt`) e os arquivos auxiliares de inferência.
+* **`data/`**: Contém amostras de dados utilizadas para fins de demonstração, arquivos de metadados, configurações do dataset e as imagens reservadas para o teste cego.
 
-- <b>src</b>: Todo o código fonte desenvolvido, como scripts em Python, R, JS ou HTML, notebooks, códigos para ESP32/Arduino, APIs ou microsserviços, além de modelos, inferências e etc. Os tipos de arquivos e códigos são definidos no enunciado da atividade.
-
-- <b>data</b>: Contém os dados utilizados, como arquivos CSV, Excel, JSON, bases sintéticas e etc.
-
-- <b>README.md</b>: Arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
-
-
-‼️ OBSERVAÇÃO DO TUTOR, favor desconsiderar do seu arquivo final: não há obrigação de usar todas as pastas, use apenas o que fizer SENTIDO para a entrega. ‼️
+---
 
 
 ## 📎 Links e Observações
 
-- <b>Listagem de Links</b>: Links do projeto (ex. vídeos da entrega, páginas, etc.), 
+### Listagem de Links
+* **Aplicação em Produção (Streamlit Cloud):** [Acesse o GAIA no Streamlit](https://guardiao-ancestral-ai-dnnaeegp877enruacsunm5.streamlit.app/)
+* **Vídeo de Demonstração / Pitch (YouTube):** `[Inserir o link do YouTube da sua equipe aqui]`
 
-- <b>Explicação de decisões técnicas</b>: Observações do projeto,
-
-- <b>Observações Gerais</b>: Caso o projeto seja relacionado à alguma competição, deixar registrado no README se aceita ou não participar.
-
+### Explicação de Decisões Técnicas
+1.  **Pipeline de Dados Automatizado:** O processamento dos dados brutos foi estruturado em Python para decodificar metadados complexos do formato COCO JSON. O script realiza o mapeamento dos IDs de imagem e a normalização automatizada das coordenadas geográficas/polígonos de segmentação para as escalas exigidas pelo YOLOv8-seg.
+2.  **Isolamento via `shutil`:** Para garantir a idoneidade estatística do projeto, o fluxo de engenharia de dados utiliza a biblioteca `shutil` para segregar fisicamente os conjuntos de treino e validação, concluindo com o isolamento estrito das imagens de **Teste Cego** (sem anotações prévias), simulando perfeitamente o ambiente de produção do mundo real.
+3.  **Arquitetura Serverless Proposta (Escalabilidade):** O escopo do projeto inclui o desenho conceitual de uma arquitetura Serverless na nuvem AWS (cujo diagrama visual encontra-se na pasta `docs/`). Esta infraestrutura é apresentada como a solução recomendada para o ambiente de produção real, visando o processamento assíncrono e escalável de grandes volumes de imagens satelitais sob demanda, enquanto a interface atual opera como um MVP estável no Streamlit Cloud.
+### Observações Gerais
+* **Participação em Competições:** 
 
 ## 🔧 Como executar o código
 
-*Acrescentar as informações necessárias sobre pré-requisitos (IDEs, serviços, bibliotecas etc.) e instalação básica do projeto, descrevendo eventuais versões utilizadas. Colocar um passo a passo de como o leitor pode baixar o seu código e executá-lo a partir de sua máquina ou seu repositório.*
+### Pré-requisitos
+
+* **Python 3.10** ou superior.
+* Gerenciador de pacotes **pip** (geralmente incluso na instalação do Python).
+* **Git** instalado (para clonagem do repositório).
+* Navegador web moderno (Google Chrome, Firefox, Edge, etc.).
+
+### Execução Local da Interface (Streamlit)
+Para rodar a interface gráfica do GAIA na sua máquina local, certifique-se de que o repositório foi clonado e execute os comandos abaixo no terminal:
+
+1.  Navegue até a pasta de código-fonte:
+    ```bash
+    cd Global-Solution-2/src
+    ```
+2.  Instale as dependências listadas no projeto:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  Inicie a aplicação do Streamlit:
+    ```bash
+    streamlit run app.py
+    ```
+4.  O sistema abrirá automaticamente uma aba no seu navegador no endereço local `http://localhost:8501`.
+
+---
 
 
 ## 🗃 Histórico de lançamentos
 
-* 0.5.0 - XX/XX/2024
-    * 
-* 0.4.0 - XX/XX/2024
-    * 
-* 0.3.0 - XX/XX/2024
-    * 
-* 0.2.0 - XX/XX/2024
-    * 
-* 0.1.0 - XX/XX/2024
-    *
+* **1.0.0 — 09/06/2026**
+    * Lançamento oficial da versão estável do GAIA.
+    * Migração completa para a estrutura modular exigida pela FIAP.
+    * Implementação do deploy automatizado no Streamlit Cloud conectado à subpasta `/src`.
+* **0.5.0 — 06/06/2026**
+    * Conclusão do pipeline de engenharia de dados e conversão COCO para YOLO-seg.
+    * Primeira rodada de treinamento do modelo com imagens de satélite.
 
 ---
 
