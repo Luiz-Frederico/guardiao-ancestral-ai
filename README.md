@@ -13,7 +13,6 @@
 # 🌍 GAIA — Guardião Ancestral IA
 
 
-## Nome do grupo
 
 ## Integrantes: 
 <p align="left">
@@ -72,7 +71,7 @@ Dentre os arquivos e pastas presentes na raiz deste diretório, definem-se:
 
 ### Listagem de Links
 * **Aplicação em Produção (Streamlit Cloud):** [Acesse o GAIA no Streamlit](https://guardiao-ancestral-ai-dnnaeegp877enruacsunm5.streamlit.app/)
-* **Vídeo de Demonstração / Pitch (YouTube):** `[Inserir o link do YouTube da sua equipe aqui]`
+* **Vídeo de Demonstração / Pitch (YouTube):** [Assistir ao vídeo de demonstração](https://www.youtube.com/watch?v=ZOTnE1PUaSU)
 
 ### Explicação de Decisões Técnicas
 1.  **Pipeline de Dados Automatizado:** O processamento dos dados brutos foi estruturado em Python para decodificar metadados complexos do formato COCO JSON. O script realiza o mapeamento dos IDs de imagem e a normalização automatizada das coordenadas geográficas/polígonos de segmentação para as escalas exigidas pelo YOLOv8-seg.
